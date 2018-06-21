@@ -1,3 +1,6 @@
+import random
+
+
 class Edge:
     def __init__(self, destination):
         self.destination = destination
@@ -9,13 +12,6 @@ class Vertex:
         self.color = color
         self.pos = pos
         self.edges = []
-
-    # how to randomize vertex color?
-    # def update(self):
-    #     r = (self.color[0] + 1) % 256
-    #     g = (self.color[1] - 1) % 256
-    #     b = (self.color[2] + 1) % 256
-    #     self.color = [r, g, b]
 
 
 class Graph:
@@ -43,3 +39,26 @@ class Graph:
 
         self.vertexes.extend(
             [debug_vertex_1, debug_vertex_2, debug_vertex_3, debug_vertex_4, debug_vertex_5])
+
+    def bfs(self, start):
+        # colors in Bokeh should be strings, e.g. recognizable color names or hex
+        random_color = "#" + \
+            ''.join([random.choice('0123456789ABCDEF') for j in range(6)])
+
+        queue = []
+        found = []
+
+        queue.append(start)
+        found.append(start)
+
+        start.color = random_color
+
+        while len(queue) > 0:
+            v = queue[0]
+            for edge in v.edges:
+                if edge.destination not in found:
+                    found.append(edge.destination)
+                    queue.append(edge.destination)
+                    edge.destination.color = random_color
+            queue.pop(0)  # TODO: look at collection.dequeue
+        # return found
