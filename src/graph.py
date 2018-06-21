@@ -21,7 +21,7 @@ class Graph:
         debug_vertex_3 = Vertex('p3', x=350, y=150)
         debug_vertex_4 = Vertex('p4', x=300, y=400)
         debug_vertex_5 = Vertex('p5', x=300, y=150)
-        # debug_vertex_2 = Vertex('t2', x=140, y=140)
+
         debug_edge_1 = Edge(debug_vertex_2)
         debug_vertex_1.edges.append(debug_edge_1)
 
@@ -34,10 +34,5 @@ class Graph:
         debug_edge_4 = Edge(debug_vertex_5)
         debug_vertex_4.edges.append(debug_edge_4)
 
-        debug_edge_4 = Edge(debug_vertex_5)
-        debug_vertex_4.edges.append(debug_edge_4)
-
         self.vertexes.extend(
             [debug_vertex_1, debug_vertex_2, debug_vertex_3, debug_vertex_4, debug_vertex_5])
-
-        # print(debug_vertex_1.pos['x'])
