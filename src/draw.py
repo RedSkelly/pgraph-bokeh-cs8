@@ -7,20 +7,19 @@ from bokeh.palettes import Spectral8
 
 from graph import *
 
-# TODO: graph renders as square even if height != width
-# WIDTH = 640
-# HEIGHT = 480
-# maybe plot_width=WIDTH plot_height=HEIGHT in plot=figure() below
+WIDTH = 640
+HEIGHT = 480
 CIRCLE_SIZE = 30
 COLORS = []
 
 graph_data = Graph()
-graph_data.debug_create_test_data()
-graph_data.bfs(graph_data.vertexes[0])
+# graph_data.debug_create_test_data()
+# graph_data.bfs(graph_data.vertexes[0])
+graph_data.connected_components()
 
-N = len(graph_data.vertexes)    # no longer fixed number of vertices
+N = len(graph_data.vertexes)
 node_indices = list(range(N))
-# print('node_indices: ', node_indices)
+
 
 # draw edges from one point to another
 start_points = []
@@ -53,8 +52,8 @@ y = [v.pos['y'] for v in graph_data.vertexes]
 graph_layout = dict(zip(node_indices, zip(x, y)))
 graph.layout_provider = StaticLayoutProvider(graph_layout=graph_layout)
 
-plot = figure(title='Graph Layout Demonstration', x_range=(0, 500), y_range=(0, 500),
-              tools='', toolbar_location=None)
+plot = figure(title='Graph Layout Demonstration', plot_width=WIDTH, plot_height=HEIGHT,
+              x_range=(0, 500), y_range=(0, 500), tools='', toolbar_location=None)
 plot.renderers.append(graph)
 
 # create a new dict to use as a data source, with three lists in it, ordered in the same way as vertexes

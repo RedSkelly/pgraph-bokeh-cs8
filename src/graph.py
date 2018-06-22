@@ -62,3 +62,10 @@ class Graph:
                     edge.destination.color = random_color
             queue.pop(0)  # TODO: look at collection.dequeue
         # return found
+
+    def connected_components(self):
+        searched = []
+        for vertex in self.vertexes:
+            if vertex not in searched:
+                searched = self.bfs(vertex)
+                # searched.append(self.bfs(vertex))
